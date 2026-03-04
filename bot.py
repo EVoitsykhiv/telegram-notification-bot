@@ -16,6 +16,16 @@ async def test(update: Update, context: ContextTypes.DEFAULT_TYPE):
 async def status(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text("System status: OK")
 
+async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    text = """
+Available commands:
+
+/start - start bot
+/status - system status
+/test - send test notification
+"""
+    await update.message.reply_text(text)
+
 
 def main():
 
@@ -24,6 +34,7 @@ def main():
     app.add_handler(CommandHandler("start", start))
     app.add_handler(CommandHandler("test", test))
     app.add_handler(CommandHandler("status", status))
+    app.add_handler(CommandHandler("help", help_command))
 
     print("Bot started")
 
