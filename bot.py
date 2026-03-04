@@ -9,7 +9,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 async def test(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    send_notification("Test notification from bot")
+    await send_notification("Test notification")
     await update.message.reply_text("Notification sent")
 
 
