@@ -3,6 +3,5 @@ from config import BOT_TOKEN, CHAT_ID
 
 bot = Bot(token=BOT_TOKEN)
 
-
-def send_notification(message: str):
-    bot.send_message(chat_id=CHAT_ID, text=message)
+async def send_notification(message: str):
+    await bot.send_message(chat_id=CHAT_ID, text=message)
