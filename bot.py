@@ -2,7 +2,12 @@ from telegram import Update
 from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
 from notifier import send_notification
 from config import BOT_TOKEN
+import logging
 
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s - %(levelname)s - %(message)s"
+)
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text("Bot is running")
@@ -16,7 +21,7 @@ async def test(update: Update, context: ContextTypes.DEFAULT_TYPE):
 async def status(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text("System status: OK")
 
-async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
+async def help_command(update, context):
     text = """
 Available commands:
 
@@ -28,7 +33,7 @@ Available commands:
 
 
 def main():
-
+    
     app = ApplicationBuilder().token(BOT_TOKEN).build()
 
     app.add_handler(CommandHandler("start", start))
@@ -37,7 +42,7 @@ def main():
     app.add_handler(CommandHandler("help", help_command))
 
     print("Bot started")
-
+    logging.info("Telegram bot started")
     app.run_polling()
 
 
